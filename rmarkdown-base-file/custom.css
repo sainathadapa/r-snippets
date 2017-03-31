@@ -1,0 +1,12 @@
+body .main-container {
+  max-width: 95%;
+}
+
+table {
+  max-width: 95%;
+}
+
+body {
+  font-size: 16px;
+  color: #317eac;
+}
