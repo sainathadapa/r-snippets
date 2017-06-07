@@ -35,3 +35,11 @@ source('calendar_heatmap.R')
 df <- data.frame(timestamp = as.POSIXct('2017-01-01') + ((0:364)*86400), value = rnorm(365))
 calendar_heat_map(df, 'timestamp', 'value')
 ```
+
+# Get data about the repos that I star-ed in Github
+```{r, fig.width=10, fig.height=3}
+source('get_github_stars.R')
+get_github_stars_data('https://github.com/sainathadapa?tab=stars') %>% glimpse
+```
+
+
