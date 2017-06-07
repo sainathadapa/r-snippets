@@ -1,7 +1,7 @@
 -   [Comma format - Indian style](#comma-format---indian-style)
 -   [Convert output of 'glimpse' function to org-mode's table format](#convert-output-of-glimpse-function-to-org-modes-table-format)
 -   [Calendar heatmap](#calendar-heatmap)
--   [Get data about the repos that I star-ed in Github](#get-data-about-the-repos-that-i-star-ed-in-github)
+-   [Get the list of star-ed repos and corresponding info](#get-the-list-of-star-ed-repos-and-corresponding-info)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 This repo contains custom R functions/scripts that I find useful. Each file/script is self-contained. You are free to copy as you wish, under the MIT License.
@@ -53,8 +53,8 @@ calendar_heat_map(df, 'timestamp', 'value')
 
 ![](README-unnamed-chunk-4-1.png)
 
-Get data about the repos that I star-ed in Github
-=================================================
+Get the list of star-ed repos and corresponding info
+====================================================
 
 ``` r
 source('get_github_stars.R')
@@ -65,7 +65,7 @@ get_github_stars_data('https://github.com/sainathadapa?tab=stars') %>% glimpse
 #> $ name        <chr> "rstudio/keras", "lockedata/pRojects", "Dpananos/G...
 #> $ description <chr> "R Interface to Keras", "R package for making proj...
 #> $ language    <chr> "R", "R", "Jupyter Notebook", "Jupyter Notebook", ...
-#> $ stars       <chr> "80", "36", "48", "1,220", "490", "27", "2,971", "...
+#> $ stars       <chr> "80", "36", "48", "1,223", "490", "28", "2,972", "...
 #> $ forks       <chr> "7", "3", "10", "541", "33", "3", "141", NA, "250"...
 #> $ updated     <chr> "Jun 6, 2017", "May 13, 2017", "Jun 4, 2017", "Jun...
 ```
