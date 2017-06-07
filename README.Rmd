@@ -1,0 +1,37 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+    toc: true
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+This repo contains custom R functions/scripts that I find useful. Each file/script is self-contained. You are free to copy as you wish, under the MIT License.
+
+# Comma format - Indian style
+```{r}
+source('indian_style_comma_formatter.R')
+indian_comma(c(0, 10, 8, 1000, 234, 500007, 12315414))
+```
+
+# Convert output of 'glimpse' function to org-mode's table format
+```{r}
+source('glimpse_output_as_org_table.R')
+glimpse_output_as_org_table(as.data.frame(cars))
+```
+
+# Calendar heatmap
+```{r, fig.width=10, fig.height=3}
+source('calendar_heatmap.R')
+df <- data.frame(timestamp = as.POSIXct('2017-01-01') + ((0:364)*86400), value = rnorm(365))
+calendar_heat_map(df, 'timestamp', 'value')
+```

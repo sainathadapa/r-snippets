@@ -1,3 +1,5 @@
+library(stringr)
+
 indian_comma <- function(x) {
   
   where_na <- is.na(x)
@@ -21,8 +23,6 @@ indian_comma <- function(x) {
   res <- str_replace_all(res, '^(0*)(.*)(.)$', '\\2\\3')
   res <- str_replace_all(res, '^(,*)(.*)$', '\\2')
   res <- str_replace_all(res, '^(0*)(.*)(.)$', '\\2\\3')
-  
-  # res <- str_pad(res, width = max(str_length(res)), side = 'left')
   
   ans <- character(length(where_na))
   ans[where_na] <- NA_character_

@@ -1,3 +1,6 @@
+library(dplyr)
+library(stringr)
+
 glimpse_output_as_org_table <- function(x) {
   capture.output(glimpse(x)) %>%
     str_replace_all('^\\$', '| ') %>% 
