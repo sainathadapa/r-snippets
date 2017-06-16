@@ -17,12 +17,12 @@ common_extractor <- function(x, css) {
 
 get_one_node_elements <- function(x) {
   
-  data_frame(name = x %>% common_extractor('.mb-1 a') %>% str_replace_all(' ', ''),
+  data_frame(name = x %>% common_extractor('.mb-1 a') %>% str_replace_all(' ', '') %>% make_na_if_null(),
              description = x %>% common_extractor('.pr-4') %>% make_na_if_null(),
              language = x %>% common_extractor('span.mr-3') %>% make_na_if_null(),
              stars = x %>% common_extractor('span+ .muted-link') %>% make_na_if_null(),
              forks = x %>% common_extractor('.muted-link+ .mr-3') %>% make_na_if_null(),
-             updated = x %>% common_extractor('relative-time'))
+             updated = x %>% common_extractor('relative-time') %>% make_na_if_null())
 }
 
 get_one_page_data <- function(x) {
@@ -62,8 +62,12 @@ get_github_stars_data <- function(x) {
     pages_to_try <- c(pages_to_try, get_next_pages(this_page_html)) %>% setdiff(y = pages_tried)
   }
   
-  distinct(bind_rows(all_pages_data))
+  distinct(bind_rows(all_pages_data)) %>%
+    filter(!is.na(name)) %>% 
+    mutate(url = paste0('https://github.com/',  name))
+  
 }
+
 
 # get_github_stars_data('https://github.com/sainathadapa?tab=stars')
 
