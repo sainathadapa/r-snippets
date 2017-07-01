@@ -42,4 +42,19 @@ source('get_github_stars.R')
 get_github_stars_data('https://github.com/sainathadapa?tab=stars') %>% glimpse
 ```
 
+# Selective usage of `expand` parameter in `ggplot2::coord_cartesian`
+
+For more information, see https://github.com/tidyverse/ggplot2/pull/1697.
+
+```{r}
+library(ggplot2)
+p <- ggplot(mtcars, aes(disp, wt)) + geom_point() + geom_smooth()
+print(p)
+```
+```{r}
+source('coord-cartesian-modified.R')
+p + coord_cartesian_sp(expand = c(T, F, F, T))
+```
+
+Notice that the expansion factor was applied to the left and top edges of the plot, but not to the other edges.
 

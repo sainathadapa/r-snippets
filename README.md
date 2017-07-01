@@ -2,6 +2,7 @@
 -   [Convert output of 'glimpse' function to org-mode's table format](#convert-output-of-glimpse-function-to-org-modes-table-format)
 -   [Calendar heatmap](#calendar-heatmap)
 -   [Get the list of star-ed repos and corresponding info](#get-the-list-of-star-ed-repos-and-corresponding-info)
+-   [Selective usage of `expand` parameter in `ggplot2::coord_cartesian`](#selective-usage-of-expand-parameter-in-ggplot2coord_cartesian)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 This repo contains custom R functions/scripts that I find useful. Each file/script is self-contained. You are free to copy as you wish, under the MIT License.
@@ -60,12 +61,37 @@ Get the list of star-ed repos and corresponding info
 source('get_github_stars.R')
 #> Loading required package: xml2
 get_github_stars_data('https://github.com/sainathadapa?tab=stars') %>% glimpse
-#> Observations: 172
-#> Variables: 6
-#> $ name        <chr> "rstudio/keras", "lockedata/pRojects", "Dpananos/G...
-#> $ description <chr> "R Interface to Keras", "R package for making proj...
-#> $ language    <chr> "R", "R", "Jupyter Notebook", "Jupyter Notebook", ...
-#> $ stars       <chr> "80", "36", "48", "1,223", "490", "28", "2,972", "...
-#> $ forks       <chr> "7", "3", "10", "541", "33", "3", "141", NA, "250"...
-#> $ updated     <chr> "Jun 6, 2017", "May 13, 2017", "Jun 4, 2017", "Jun...
+#> Observations: 187
+#> Variables: 7
+#> $ name        <chr> "szilard/GBM-multicore", "nstrayer/shinysense", "m...
+#> $ description <chr> "GBM multicore scaling: h2o, xgboost and lightgbm ...
+#> $ language    <chr> "HTML", "JavaScript", "Python", "R", "R", "Jupyter...
+#> $ stars       <chr> "5", "27", "202", "51", "1", "176", NA, "27", "309...
+#> $ forks       <chr> NA, "3", "15", "5", NA, "20", "231", "7", "34", "2...
+#> $ updated     <chr> "Jun 27, 2017", "Jun 28, 2017", "Jun 30, 2017", "J...
+#> $ url         <chr> "https://github.com/szilard/GBM-multicore", "https...
 ```
+
+Selective usage of `expand` parameter in `ggplot2::coord_cartesian`
+===================================================================
+
+For more information, see <https://github.com/tidyverse/ggplot2/pull/1697>.
+
+``` r
+library(ggplot2)
+p <- ggplot(mtcars, aes(disp, wt)) + geom_point() + geom_smooth()
+print(p)
+#> `geom_smooth()` using method = 'loess'
+```
+
+![](README-unnamed-chunk-6-1.png)
+
+``` r
+source('coord-cartesian-modified.R')
+p + coord_cartesian_sp(expand = c(T, F, F, T))
+#> `geom_smooth()` using method = 'loess'
+```
+
+![](README-unnamed-chunk-7-1.png)
+
+Notice that the expansion factor was applied to the left and top edges of the plot, but not to the other edges.
