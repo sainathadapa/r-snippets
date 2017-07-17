@@ -71,6 +71,7 @@ get_github_stars_data('https://github.com/sainathadapa?tab=stars') %>% glimpse
 #> $ updated     <chr> "Jun 27, 2017", "Jun 28, 2017", "Jun 30, 2017", "J...
 #> $ url         <chr> "https://github.com/szilard/GBM-multicore", "https...
 ```
+Update (2017-07-17): Seems like there is an easier way to get this data. Goto `https://api.github.com/users/<username>/starred`.
 
 Selective usage of `expand` parameter in `ggplot2::coord_cartesian`
 ===================================================================
